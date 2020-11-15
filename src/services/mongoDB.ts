@@ -1,4 +1,5 @@
 import {MongoClient} from "mongodb"
+import {error500} from "../models/Error";
 
 let client: MongoClient | null = null
 
@@ -18,8 +19,8 @@ async function getClient(){
 
 export async function getCollection<A>(collectionName: string){
     const client = await getClient()
-    const db = await client?.db(databaseName)
-    return db?.collection<A>(collectionName)
+    const db = client?.db(databaseName)
+    return db?.collection<A>(collectionName) || error500
 }
 
 export function closeMongoDBConnection(){
