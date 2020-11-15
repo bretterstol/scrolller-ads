@@ -1,6 +1,6 @@
 import express from 'express';
 import * as bodyParser from "body-parser";
-import {getAds, postAd} from "./controllers/adRoutes";
+import {getAd, getAds, postAd} from "./controllers/adRoutes";
 import swaggerUi from "swagger-ui-express"
 import swaggerDoc from "./swagger.json"
 import {closeMongoDBConnection, connectToMongoDB} from "./services/mongoDB";
@@ -29,7 +29,9 @@ app.get("/test", (req, res) => res.send({
 
 
 app.post("/ads", postAd)
-app.get("/ads/all", getAds)
+app.get("/ads", getAds)
+app.get("/ads/:adId", getAd)
+
 
 
 app.listen(8081, () => console.log("running"))

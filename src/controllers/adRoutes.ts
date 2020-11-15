@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import Ad from "../models/Ad";
-import {getAllAds, insertAd} from "../services/adsService";
+import {getAdById, getAllAds, insertAd} from "../services/adsService";
 
 export async function postAd(req: Request, res: Response) {
     const {body} = req
@@ -10,9 +10,10 @@ export async function postAd(req: Request, res: Response) {
     res.json(result)
 }
 export async function getAd(req: Request, res: Response){
-    res.json({
-        status: "Jeo"
-    })
+   const {adId} = req.params
+    const result = await getAdById(adId)
+    console.log(result)
+    res.json(result)
 }
 
 export async function getAds(req: Request, res: Response){

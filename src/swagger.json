@@ -54,15 +54,38 @@
             "description": "ok"
           }
         }
-      }
-    },
-    "/ads/all": {
+      },
       "get": {
-        "tags": ["ads"],
+        "tags": [
+          "ads"
+        ],
         "summary": "Get all ads in the system",
         "responses": {
           "200": {
             "description": "All ads",
+            "schema": {
+              "$ref": "#/definitions/AD"
+            }
+          }
+        }
+      }
+    },
+    "/ads/{adId}": {
+      "get": {
+        "tags": ["ads"],
+        "summary": "Get an ad by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "adId",
+            "description": "Ad id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested ad",
             "schema": {
               "$ref": "#/definitions/AD"
             }
