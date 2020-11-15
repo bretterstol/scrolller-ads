@@ -15,6 +15,12 @@
   "produces": [
     "application/json"
   ],
+  "tags": [
+    {
+      "name": "ads",
+      "description": "Scrolller Ads"
+    }
+  ],
   "paths": {
     "/test": {
       "get": {
@@ -28,6 +34,9 @@
     },
     "/ads": {
       "post": {
+        "tags": [
+          "ads"
+        ],
         "summary": "Insert new ad",
         "parameters": [
           {
@@ -49,6 +58,7 @@
     },
     "/ads/all": {
       "get": {
+        "tags": ["ads"],
         "summary": "Get all ads in the system",
         "responses": {
           "200": {
