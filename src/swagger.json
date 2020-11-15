@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0.0",
   "info": {
     "version": "0.0.1",
     "title": "Scrolller-ads",
@@ -9,12 +9,6 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [
-    {
-      "url": "/",
-      "description": "Local testing"
-    }
-  ],
   "consumes": [
     "application/json"
   ],
@@ -29,6 +23,81 @@
           "200": {
             "description": "OK"
           }
+        }
+      }
+    },
+    "/api": {
+      "post": {
+        "summary": "Insert new ad",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AD",
+            "description": "Ad to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AD"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AD": {
+      "type": "object",
+      "properties": {
+        "siteName": {
+          "type": "string"
+        },
+        "brandLogoUrl": {
+          "type": "string"
+        },
+        "adUrl": {
+          "type": "string"
+        },
+        "buttonText": {
+          "type": "string"
+        },
+        "shortButtonText": {
+          "type": "string"
+        },
+        "url": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mediaSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MediaSource"
+          }
+        }
+      }
+    },
+    "MediaSource": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
         }
       }
     }
