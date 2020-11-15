@@ -1,18 +1,27 @@
-import {MongoClient, ObjectID} from "mongodb"
-import {MongoDefaultSchema} from "../models/Default";
+import {MongoClient} from "mongodb"
 
 let client: MongoClient | null = null
 
 const databaseName = "scrolller-ads"
-const connectionString = "mongodb+srv://localhost:27017/?poolSize=20"
 
-function setClient(){
+const connectionString = "mongodb://test:test@localhost:27017/?poolSize=20"
+
+export async function connectToMongoDB(){
     client = new MongoClient(connectionString)
+    await client.connect()
 }
 
-export async function getClient<A>(collection: string){
-    if(!client) setClient()
-    await client?.connect()
-    const database = client?.db(databaseName)
-    return database?.collection<A>(collection)
+async function getClient(){
+    if(!client) await connectToMongoDB()
+    return client
+}
+
+export async function getCollection<A>(collectionName: string){
+    const client = await getClient()
+    const db = await client?.db(databaseName)
+    return db?.collection<A>(collectionName)
+}
+
+export function closeMongoDBConnection(){
+    client?.close()
 }

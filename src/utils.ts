@@ -1,7 +1,8 @@
 import {ObjectID} from "mongodb";
+import {MongoDefaultSchema} from "./models/Default";
 
 
-export function addId<A>(obj: A): A & {_id: ObjectID} {
+export function addId<A>(obj: A): A & MongoDefaultSchema {
     const _id = new ObjectID()
     return {
         ...obj,

@@ -26,7 +26,7 @@
         }
       }
     },
-    "/api": {
+    "/ads": {
       "post": {
         "summary": "Insert new ad",
         "parameters": [
@@ -43,6 +43,19 @@
         "responses": {
           "200": {
             "description": "ok"
+          }
+        }
+      }
+    },
+    "/ads/all": {
+      "get": {
+        "summary": "Get all ads in the system",
+        "responses": {
+          "200": {
+            "description": "All ads",
+            "schema": {
+              "$ref": "#/definitions/AD"
+            }
           }
         }
       }
